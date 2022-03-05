@@ -19,8 +19,8 @@ export default function Header() {
     <Wrapper>
       <img src={logo} alt="" width={"100%"} style={{ marginTop: -48 }} />
       <Connect responsive={false} />
-      <Typography variant="h6" marginTop={-3}>
-        The BNB Reward Pool with the tastiest daily return and lowest dev fee
+      <Typography variant="h6" marginTop={3}>
+        Lucky Cat, the highest stablecoin rewards in all of DeFi.
       </Typography>
     </Wrapper>
   );

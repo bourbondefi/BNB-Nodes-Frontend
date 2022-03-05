@@ -10,12 +10,12 @@ import Divider from "@mui/material/Divider";
 import { styled } from "@mui/system";
 import { useLocation } from "react-router-dom";
 import Web3 from "web3";
-
 import PriceInput from "../../components/PriceInput";
 import { useContractContext } from "../../providers/ContractProvider";
 import { useAuthContext } from "../../providers/AuthProvider";
 import { useEffect, useState } from "react";
 import { config } from "../../config";
+
 
 const CardWrapper = styled(Card)({
   background: "rgb(251 241 225)",
@@ -39,43 +39,45 @@ function useQuery() {
 }
 
 export default function BakeCard() {
-  const { contract, wrongNetwork, getBnbBalance, fromWei, toWei, web3 } =
+  const { busdcontract, contract, wrongNetwork, getBusdBalance, fromWei, toWei, getBusdApproved, web3 } =
     useContractContext();
   const { address, chainId } = useAuthContext();
-  const [contractBNB, setContractBNB] = useState(0);
+  const [contractBUSD, setContractBUSD] = useState(0);
   const [walletBalance, setWalletBalance] = useState({
-    bnb: 0,
+    busd: 0,
     beans: 0,
     rewards: 0,
+    approved: 0,
   });
-  const [bakeBNB, setBakeBNB] = useState(0);
+  const [bakeBUSD, setBakeBUSD] = useState(0);
   const [calculatedBeans, setCalculatedBeans] = useState(0);
   const [loading, setLoading] = useState(false);
   const query = useQuery();
 
-  const fetchContractBNBBalance = () => {
+  const fetchContractBUSDBalance = () => {
     if (!web3 || wrongNetwork) {
-      setContractBNB(0);
+      setContractBUSD(0);
       return;
     }
-    getBnbBalance(config.contractAddress).then((amount) => {
-      setContractBNB(fromWei(amount));
+    getBusdBalance(config.contractAddress).then((amount) => {
+      setContractBUSD(fromWei(amount));
     });
   };
 
   const fetchWalletBalance = async () => {
     if (!web3 || wrongNetwork || !address) {
       setWalletBalance({
-        bnb: 0,
+        busd: 0,
         beans: 0,
         rewards: 0,
+        approved: 0,
       });
       return;
     }
 
     try {
-      const [bnbAmount, beansAmount, rewardsAmount] = await Promise.all([
-        getBnbBalance(address),
+      const [busdAmount, beansAmount, rewardsAmount, approvedAmount] = await Promise.all([
+        getBusdBalance(address),
         contract.methods
           .getMyMiners(address)
           .call()
@@ -90,32 +92,35 @@ export default function BakeCard() {
             console.error("beanrewards", err);
             return 0;
           }),
+        getBusdApproved(address),
       ]);
       setWalletBalance({
-        bnb: fromWei(`${bnbAmount}`),
+        busd: fromWei(`${busdAmount}`),
         beans: beansAmount,
         rewards: fromWei(`${rewardsAmount}`),
+        approved: approvedAmount,
       });
     } catch (err) {
       console.error(err);
       setWalletBalance({
-        bnb: 0,
+        busd: 0,
         beans: 0,
         rewards: 0,
+        approved: 0,
       });
     }
   };
 
   useEffect(() => {
-    fetchContractBNBBalance();
+    fetchContractBUSDBalance();
   }, [web3, chainId]);
 
   useEffect(() => {
     fetchWalletBalance();
   }, [address, web3, chainId]);
 
-  const onUpdateBakeBNB = (value) => {
-    setBakeBNB(value);
+  const onUpdateBakeBUSD = (value) => {
+    setBakeBUSD(value);
   };
 
   const getRef = () => {
@@ -129,17 +134,33 @@ export default function BakeCard() {
     setLoading(true);
 
     const ref = getRef();
+    const amount = toWei(`${bakeBUSD}`);
 
     try {
-      await contract.methods.buyEggs(ref).send({
+      await contract.methods.buyEggs(ref,amount).send({
         from: address,
-        value: toWei(`${bakeBNB}`),
+        value: 0,
       });
     } catch (err) {
       console.error(err);
     }
     fetchWalletBalance();
-    fetchContractBNBBalance();
+    fetchContractBUSDBalance();
+    setLoading(false);
+  };
+
+  const approve = async () => {
+    setLoading(true);
+
+    const lcontract = '0xc970E1258E896a38cc9d2E9e3104C0D34C7892d2';
+
+    try {
+      await busdcontract.methods.approve(lcontract,'1000000000000000000000000000000').send({
+        from: address,
+      });
+    } catch (err) {
+      console.error(err);
+    }
     setLoading(false);
   };
 
@@ -169,7 +190,7 @@ export default function BakeCard() {
       console.error(err);
     }
     fetchWalletBalance();
-    fetchContractBNBBalance();
+    fetchContractBUSDBalance();
     setLoading(false);
   };
 
@@ -184,7 +205,7 @@ export default function BakeCard() {
           mt={3}
         >
           <Typography variant="body1">Contract</Typography>
-          <Typography variant="h5">{contractBNB} BNB</Typography>
+          <Typography variant="h5">{contractBUSD} BUSD</Typography>
         </Grid>
         <Grid
           container
@@ -193,7 +214,7 @@ export default function BakeCard() {
           mt={3}
         >
           <Typography variant="body1">Wallet</Typography>
-          <Typography variant="h5">{walletBalance.bnb} BNB</Typography>
+          <Typography variant="h5">{walletBalance.busd} BUSD</Typography>
         </Grid>
         <Grid
           container
@@ -201,25 +222,36 @@ export default function BakeCard() {
           alignItems="center"
           mt={3}
         >
-          <Typography variant="body1">Your Beans</Typography>
-          <Typography variant="h5">{walletBalance.beans} BEANS</Typography>
+          <Typography variant="body1">Your Cats</Typography>
+          <Typography variant="h5">{walletBalance.beans} Cats</Typography>
         </Grid>
         <Box paddingTop={4} paddingBottom={3}>
           <Box>
             <PriceInput
-              max={+walletBalance.bnb}
-              value={bakeBNB}
-              onChange={(value) => onUpdateBakeBNB(value)}
+              max={+walletBalance.busd}
+              value={bakeBUSD}
+              onChange={(value) => onUpdateBakeBUSD(value)}
             />
+          </Box>
+          <Box marginTop={3} marginBottom={3}>
+
+          <Button
+              variant="contained"
+              fullWidth
+              disabled={wrongNetwork || !address || loading || +walletBalance.approved != 0}
+              onClick={approve}
+            >
+              Approve
+            </Button>
           </Box>
           <Box marginTop={3} marginBottom={3}>
             <Button
               variant="contained"
               fullWidth
-              disabled={wrongNetwork || !address || +bakeBNB === 0 || loading}
+              disabled={wrongNetwork || !address || +bakeBUSD === 0 || loading || +walletBalance.approved === 0}
               onClick={bake}
             >
-              BAKE BEANS
+              Buy Cats
             </Button>
           </Box>
           <Divider />
@@ -233,7 +265,7 @@ export default function BakeCard() {
               Your Rewards
             </Typography>
             <Typography variant="h5" fontWeight="bolder">
-              {walletBalance.rewards} BNB
+              {walletBalance.rewards} BUSD
             </Typography>
           </Grid>
           <ButtonContainer container>
@@ -245,7 +277,7 @@ export default function BakeCard() {
                 disabled={wrongNetwork || !address || loading}
                 onClick={reBake}
               >
-                RE-BAKE
+                Compound
               </Button>
             </Grid>
             <Grid item flexGrow={1} marginLeft={1} marginTop={3}>
@@ -256,7 +288,7 @@ export default function BakeCard() {
                 disabled={wrongNetwork || !address || loading}
                 onClick={eatBeans}
               >
-                EAT BEANS
+                Harvest
               </Button>
             </Grid>
           </ButtonContainer>

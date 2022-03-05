@@ -22,7 +22,7 @@ const nutritionFacts = [
   },
   {
     label: "Dev Fee",
-    value: 3,
+    value: 5,
   },
 ];
 
@@ -31,7 +31,7 @@ export default function NutritionFacts() {
     <CardWrapper>
       <CardContent>
         <Typography variant="h5" borderBottom="6px solid" paddingBottom={1}>
-          Nutrition Facts
+          Lucky Cat Details
         </Typography>
         <Box paddingTop={2}>
           {nutritionFacts.map((f) => (
