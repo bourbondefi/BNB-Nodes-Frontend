@@ -1,5 +1,8 @@
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
+import {Link} from 'react-router-dom'
 import logo from "../../assets/FullLogo.png";
 import Connect from "./Connect";
 
@@ -14,6 +17,16 @@ const Wrapper = styled("div")(({ theme }) => ({
   },
 }));
 
+const ButtonContainer = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: "column",
+    "> div": {
+      marginLeft: 0,
+      marginRight: 0,
+    },
+  },
+}));
+
 export default function Header() {
   return (
     <Wrapper>
@@ -22,6 +35,21 @@ export default function Header() {
       <Typography variant="h6" marginTop={3}>
         Lucky Cat, the highest stablecoin rewards in all of DeFi.
       </Typography>
+      <ButtonContainer container>
+        <Grid item flexGrow={1} marginRight={1} marginTop={3}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://luckycat.money/Lucky_Cat_BUSD_Litepaper_202222.pdf';
+              }}
+              >
+                  Litepaper
+            </Button>
+        </Grid>
+      </ButtonContainer>
     </Wrapper>
   );
 }
