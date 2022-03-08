@@ -49,6 +49,32 @@ export default function Header() {
                   Litepaper
             </Button>
         </Grid>
+        <Grid item flexGrow={1} marginRight={1} marginTop={3}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://pancakeswap.finance/swap?outputCurrency=0x6A253216Ee3D9c4B9e6Cbb68889A96b5F6433e05';
+              }}
+              >
+                  Buy on Pancakeswap
+            </Button>
+        </Grid>
+        <Grid item flexGrow={1} marginRight={1} marginTop={3}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://poocoin.app/tokens/0x6A253216Ee3D9c4B9e6Cbb68889A96b5F6433e05';
+              }}
+              >
+                  Chart
+            </Button>
+        </Grid>
       </ButtonContainer>
     </Wrapper>
   );
