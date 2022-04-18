@@ -35,6 +35,21 @@ export default function Header() {
       <Typography variant="h6" marginTop={3}>
         Lucky Cat, the highest rewards in all of DeFi.
       </Typography>
+      <ButtonContainer container>
+        <Grid item flexGrow={1} marginRight={1} marginTop={3} alignItems="center">
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://luckycat.money/';
+              }}
+              >
+                  Home
+            </Button>
+        </Grid>
+      </ButtonContainer>
     </Wrapper>
   );
 }

@@ -14,7 +14,7 @@ const ConnectButton = styled(Button)(({ theme }) => ({
 
 const SmallScreenConnectButton = styled(Button)(({ theme }) => ({
   display: "none",
-  marginTop: -24,
+  marginTop: -10,
   marginBottom: 48,
   width: "95%",
   marginLeft: "auto",
