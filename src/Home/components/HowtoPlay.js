@@ -17,7 +17,7 @@ const nutritionFacts = [
     value: "six times",
   },
   {
-    label: "pet your cats",
+    label: "Pet your cats",
     value: "one time",
   },
 ];
