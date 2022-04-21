@@ -31,9 +31,10 @@ export default function HowtoPlay() {
         </Typography>
         <Box paddingTop={2}>
           {nutritionFacts.map((f) => (
-            <Grid container justifyContent="space-between">
+            <Grid container key={f.label} justifyContent="space-between">
               <Typography variant="body1" gutterBottom>
-              </Typography>
+                 {f.label}
+            </Typography>
             </Grid>
           ))}
           <Typography>
