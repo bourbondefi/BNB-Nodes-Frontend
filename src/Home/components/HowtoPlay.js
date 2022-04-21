@@ -13,12 +13,12 @@ const CardWrapper = styled(Card)({
 
 const nutritionFacts = [
   {
-    label: "Feed Your Cats",
-    value: "Six times",
+    label: "Feed your cats",
+    value: "six times",
   },
   {
-    label: "Pets Your Cats",
-    value: "One time",
+    label: "pet your cats",
+    value: "one time",
   },
 ];
 
