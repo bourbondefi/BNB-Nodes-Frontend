@@ -13,12 +13,12 @@ const CardWrapper = styled(Card)({
 
 const nutritionFacts = [
   {
-    label: "Feed your cats",
-    value: "six times",
+    label: "Feed your cats, six times a week.",
+    
   },
   {
-    label: "Pet your cats",
-    value: "one time",
+    label: "Pet your cats, one time a week.",
+    
   },
 ];
 
@@ -31,11 +31,9 @@ export default function HowtoPlay() {
         </Typography>
         <Box paddingTop={2}>
           {nutritionFacts.map((f) => (
-            <Grid container key={f.label} justifyContent="space-between">
+            <Grid container justifyContent="space-between">
               <Typography variant="body1" gutterBottom>
-                {f.label}
               </Typography>
-              <Typography gutterBottom>{f.value} a week</Typography>
             </Grid>
           ))}
           <Typography>
