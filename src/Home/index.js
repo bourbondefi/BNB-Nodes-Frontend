@@ -9,7 +9,6 @@ import ReferralLink from "./components/ReferralLink";
 import { useAuthContext } from "../providers/AuthProvider";
 import Footer from "./components/Footer";
 import FAQs from "./components/FAQ";
-import HowtoPlay from "./components/HowtoPlay";
 
 const Wrapper = styled("div")(({ theme }) => ({
   maxWidth: 400,
