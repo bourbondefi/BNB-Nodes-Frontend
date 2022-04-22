@@ -49,6 +49,19 @@ export default function Header() {
                   Home
             </Button>
         </Grid>
+        <Grid item flexGrow={1} marginRight={1} marginTop={3} alignItems="center">
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://pancakeswap.finance/swap?outputCurrency=0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
+              }}
+              >
+                  Swap
+            </Button>
+        </Grid>
       </ButtonContainer>
     </Wrapper>
   );
