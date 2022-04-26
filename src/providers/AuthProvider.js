@@ -26,7 +26,6 @@ const providerOptions = {
     options: {
       rpc: {
         56: "https://bsc-dataseed.binance.org/",
-        97: "https://data-seed-prebsc-1-s1.binance.org:8545/",
       },
       network: "binance",
     },
@@ -76,13 +75,13 @@ export const AuthProvider = ({ children }) => {
     try {
       let web3 = new Web3(Web3.givenProvider);
 
-      if (!web3.currentProvider) {
-        setSnackbar({
-          type: "error",
-          message: '"No provider was found"',
-        });
-        return;
-      }
+//      if (!web3.currentProvider) {
+//        setSnackbar({
+//         type: "error",
+//          message: '"No provider was found"',
+//        });
+//        return;
+//      }
       const provider = await web3Modal.connect();
       web3 = new Web3(provider);
       subscribeProvider(provider);
