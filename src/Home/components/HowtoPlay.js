@@ -7,17 +7,17 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 
 const CardWrapper = styled(Card)({
-  background: "#241F31",
+  background: "rgb(255 252 248)",
   marginBottom: 24,
 });
 
 const nutritionFacts = [
   {
-    label: "1) Purchase trading bots.",
+    label: "Feed your cats, six times a week.",
     
   },
   {
-    label: "2) Compound or withdraw profits daily. ",
+    label: "Pet your cats, one time a week.",
     
   },
 ];
@@ -26,8 +26,8 @@ export default function HowtoPlay() {
   return (
     <CardWrapper>
       <CardContent>
-        <Typography variant="h5" borderBottom="6px solid" borderColor="#2c2c34" textAlign="center" paddingBottom={1}>
-          How to Earn
+        <Typography variant="h5" borderBottom="6px solid" paddingBottom={1}>
+          How to Play
         </Typography>
         <Box paddingTop={2}>
           {nutritionFacts.map((f) => (
@@ -37,10 +37,11 @@ export default function HowtoPlay() {
             </Typography>
             </Grid>
           ))}
-
+          <Typography>
+            If you pet your cats too much you will stop earning!
+          </Typography>
         </Box>
       </CardContent>
     </CardWrapper>
-    
   );
 }

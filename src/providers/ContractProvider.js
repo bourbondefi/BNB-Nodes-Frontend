@@ -46,7 +46,7 @@ export const ContractProvider = ({ children }) => {
 
   const web3Instance2 = new Web3();
   web3Instance2.setProvider(Web3.givenProvider);
-  const busdAddress = "0x55d398326f99059fF775485246999027B3197955";
+  const busdAddress = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56";
   const busdcontract = new web3Instance2.eth.Contract(erc20Abi, busdAddress);
   const getBusdBalance = (address) => busdcontract.methods.balanceOf(address).call();
   const getBusdApproved = (address) => busdcontract.methods.allowance(address,config.contractAddress).call();

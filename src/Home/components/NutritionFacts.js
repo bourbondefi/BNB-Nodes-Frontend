@@ -7,18 +7,22 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 
 const CardWrapper = styled(Card)({
-  background: "#3D3846",
+  background: "rgb(255 252 248)",
   marginBottom: 24,
 });
 
 const nutritionFacts = [
   {
     label: "Daily Return",
-    value: 3.3,
+    value: 8,
+  },
+  {
+    label: "APR",
+    value: "2,920",
   },
   {
     label: "Dev Fee",
-    value: 1,
+    value: 5,
   },
 ];
 
@@ -26,8 +30,8 @@ export default function NutritionFacts() {
   return (
     <CardWrapper>
       <CardContent>
-        <Typography variant="h5" borderBottom="6px solid" paddingBottom={1} textAlign="center">
-          Safe Miner Details
+        <Typography variant="h5" borderBottom="6px solid" paddingBottom={1}>
+          Lucky Cat Details
         </Typography>
         <Box paddingTop={2}>
           {nutritionFacts.map((f) => (

@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 import {Link} from 'react-router-dom'
-import logo from "../../assets/cotp_logo.png";
+import logo from "../../assets/FullLogo.png";
 import Connect from "./Connect";
 
 const Wrapper = styled("div")(({ theme }) => ({
@@ -30,23 +30,36 @@ const ButtonContainer = styled(Grid)(({ theme }) => ({
 export default function Header() {
   return (
     <Wrapper>
-      <img src={logo} alt="" width={"50%"} style={{ marginTop: 0 }} />
+      <img src={logo} alt="" width={"100%"} style={{ marginTop: -48 }} />
       <Connect responsive={false} />
-      <Typography variant="h6" color="primary" marginTop={3}>
-        3.3% Daily Rewards (USDT)
+      <Typography variant="h6" marginTop={3}>
+        Lucky Cat, the highest rewards in all of DeFi.
       </Typography>
       <ButtonContainer container>
-        <Grid item flexGrow={1} marginRight={1} marginTop={3} marginBottom={2} alignItems="center">
+        <Grid item flexGrow={1} marginRight={1} marginTop={3} alignItems="center">
           <Button
             variant="contained"
             color="primary"
             fullWidth
             onClick={(e) => {
               e.preventDefault();
-              window.location.href='https://pancakeswap.finance/swap?outputCurrency=0x55d398326f99059fF775485246999027B3197955';
+              window.location.href='https://luckycat.money/';
               }}
               >
-                Swap for USDT
+                  Home
+            </Button>
+        </Grid>
+        <Grid item flexGrow={1} marginRight={1} marginTop={3} alignItems="center">
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://pancakeswap.finance/swap?outputCurrency=0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
+              }}
+              >
+                  Swap
             </Button>
         </Grid>
       </ButtonContainer>
