@@ -18,7 +18,7 @@ import { config } from "../../config";
 
 
 const CardWrapper = styled(Card)({
-  background: "rgb(251 241 225)",
+  background: "#3D3846",
   marginBottom: 24,
 });
 
@@ -204,8 +204,8 @@ export default function BakeCard() {
           alignItems="center"
           mt={3}
         >
-          <Typography variant="body1">Contract</Typography>
-          <Typography variant="h5">{contractBUSD} BUSD</Typography>
+          <Typography variant="body4">Contract</Typography>
+          <Typography variant="h5">{contractBUSD} USDT</Typography>
         </Grid>
         <Grid
           container
@@ -213,8 +213,8 @@ export default function BakeCard() {
           alignItems="center"
           mt={3}
         >
-          <Typography variant="body1">Wallet</Typography>
-          <Typography variant="h5">{walletBalance.busd} BUSD</Typography>
+          <Typography variant="body4">Your Wallet</Typography>
+          <Typography variant="h5">{walletBalance.busd} USDT</Typography>
         </Grid>
         <Grid
           container
@@ -222,8 +222,8 @@ export default function BakeCard() {
           alignItems="center"
           mt={3}
         >
-          <Typography variant="body1">Your Cats</Typography>
-          <Typography variant="h5">{walletBalance.beans} Cats</Typography>
+          <Typography variant="body4">Your Trading Bots</Typography>
+          <Typography variant="h5">{walletBalance.beans} Bots</Typography>
         </Grid>
         <Box paddingTop={4} paddingBottom={3}>
           <Box>
@@ -238,7 +238,7 @@ export default function BakeCard() {
           <Button
               variant="contained"
               fullWidth
-              disabled={wrongNetwork || !address || loading || +walletBalance.approved != 0}
+              disabled={wrongNetwork || !address || loading || +walletBalance.approved != 0} 
               onClick={approve}
             >
               Approve
@@ -251,7 +251,7 @@ export default function BakeCard() {
               disabled={wrongNetwork || !address || +bakeBUSD === 0 || loading || +walletBalance.approved === 0}
               onClick={bake}
             >
-              Buy Cats
+              Buy Bots
             </Button>
           </Box>
           <Divider />
@@ -265,7 +265,7 @@ export default function BakeCard() {
               Your Rewards
             </Typography>
             <Typography variant="h5" fontWeight="bolder">
-              {walletBalance.rewards} BUSD
+              {walletBalance.rewards} USDT
             </Typography>
           </Grid>
           <ButtonContainer container>
@@ -288,7 +288,7 @@ export default function BakeCard() {
                 disabled={wrongNetwork || !address || loading}
                 onClick={eatBeans}
               >
-                Harvest
+                Withdraw
               </Button>
             </Grid>
           </ButtonContainer>

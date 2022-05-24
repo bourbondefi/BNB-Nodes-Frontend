@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 
 const CardWrapper = styled(Card)({
-  background: "rgb(251 241 225)",
+  background: "#241F31",
 });
 
 const Input = styled("input")(({ theme }) => ({
@@ -17,7 +17,7 @@ const Input = styled("input")(({ theme }) => ({
   background: "white",
   width: "100%",
   outline: "none",
-  color: theme.palette.primary.main,
+  color: "#241F31",
 }));
 
 export default function ReferralLink({ address }) {
@@ -26,7 +26,7 @@ export default function ReferralLink({ address }) {
   return (
     <CardWrapper>
       <CardContent style={{ paddingLeft: 8, paddingRight: 8 }}>
-        <Typography gutterBottom variant="h5" textAlign="center">
+        <Typography gutterBottom variant="h5" textAlign="center" >
           Referral Link
         </Typography>
         <Input value={address ? link : ""} readOnly />
@@ -36,7 +36,7 @@ export default function ReferralLink({ address }) {
           marginTop={2}
           paddingX={3}
         >
-          Earn 12% of the BUSD from anyone who uses your
+          Earn 12% of the USDT from anyone who uses your
           referral link
         </Typography>
       </CardContent>

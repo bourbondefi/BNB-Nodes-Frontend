@@ -75,6 +75,7 @@ export default function Gallery() {
   return (
     <Card
       style={{
+        backgroundColor: "#3D3846",
         marginBottom: 24,
         marginLeft: -24,
         marginRight: -24,

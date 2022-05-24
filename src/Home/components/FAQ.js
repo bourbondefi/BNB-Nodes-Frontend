@@ -48,10 +48,10 @@ export default function FAQs() {
           <Grid container spacing={2} direction="column" position="relative">
             {faqs.map((faq, index) => (
               <Grid item key={faq.q}>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h6" gutterBottom>
                   {index + 1}: {faq.q}
                 </Typography>
-                <Typography variant="body1">{faq.a}</Typography>
+                <Typography variant="body3">{faq.a}</Typography>
               </Grid>
             ))}
             <IconButton
